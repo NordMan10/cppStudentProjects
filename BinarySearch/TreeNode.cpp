@@ -3,8 +3,8 @@
 TreeNode::TreeNode()
 {
 	value_ = 0;
-	firstChild_ = nullptr;
-	secondChild_ = nullptr;
+	leftChild_ = nullptr;
+	rightChild_ = nullptr;
 }
 
 TreeNode::TreeNode(int value)
@@ -24,24 +24,24 @@ void TreeNode::setValue(int value)
 	value_ = value;
 }
 
-TreeNode* TreeNode::getFirstChild()
+TreeNode* TreeNode::getLeftChild()
 {
-	return firstChild_;
+	return leftChild_;
 }
 
-void TreeNode::setFirstChild(TreeNode* node)
+void TreeNode::setLeftChild(TreeNode* node)
 {
 	assert(node);
-	firstChild_ = node;
+	leftChild_ = node;
 }
 
-TreeNode* TreeNode::getSecondChild()
+TreeNode* TreeNode::getRightChild()
 {
-	return secondChild_;
+	return rightChild_;
 }
 
-void TreeNode::setSecondChild(TreeNode* node)
+void TreeNode::setRightChild(TreeNode* node)
 {
 	assert(node);
-	secondChild_ = node;
+	rightChild_ = node;
 }

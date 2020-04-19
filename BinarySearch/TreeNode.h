@@ -8,13 +8,13 @@ public:
 	TreeNode(int value);
 	int getValue();
 	void setValue(int value);
-	TreeNode* getFirstChild();
-	void setFirstChild(TreeNode* node);
-	TreeNode* getSecondChild();
-	void setSecondChild(TreeNode* node);
+	TreeNode* getLeftChild();
+	void setLeftChild(TreeNode* node);
+	TreeNode* getRightChild();
+	void setRightChild(TreeNode* node);
 private:
 	int value_;
-	TreeNode* firstChild_;
-	TreeNode* secondChild_;
+	TreeNode* leftChild_;
+	TreeNode* rightChild_;
 };
 
