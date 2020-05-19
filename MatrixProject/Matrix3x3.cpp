@@ -1,7 +1,6 @@
 #include <iostream>
 #include <time.h>
 #include "Matrix3x3.h"
-using namespace std;
 
 int Matrix3x3::element(const int i, const int j) const
 {
@@ -24,10 +23,8 @@ void Matrix3x3::fillRandomElements(const int minVal, const int maxVal)
 int Matrix3x3::sumPrincipalDiag() const
 {
 	int sum = 0;
-	for (auto i = 0; i < 3; i++)
-		for (auto j = 0; j < 3; j++)
-			if (i == j)	
-				sum += matrix[i][j];
+	for (auto i = 0; i < 3; i++)	
+		sum += matrix[i][i];
 	return sum;
 }
 
