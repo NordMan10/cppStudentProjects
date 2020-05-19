@@ -1,9 +1,6 @@
 #pragma once
 class MatrixXnX
 {
-private:
-	int** matrix;
-	
 public:
 	int dimension;
 	MatrixXnX(const int iDim);
@@ -17,5 +14,10 @@ public:
 	int sumRow(const int iRow) const;
 	int minColumn(const int iCol) const;
 	int maxColumn(const int iCol) const;
+	int getDimension() const;
+	
+private:
+	int* matrix;
+	int dimension;
 };
 
