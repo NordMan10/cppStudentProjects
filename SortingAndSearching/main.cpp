@@ -1,23 +1,10 @@
 #include <iostream>
 #include <stack>
 #include <time.h>
+#include <chrono>
 #include "main.h"
 
 using namespace std;
-
-// simple search by enumeration
-int SimpleSearch(int value, int* array, int length)
-{
-	for (auto i = 0; i < length; i++)
-	{
-		if (*(array + i) == value)
-		{
-			return i;
-		}
-	}
-	return -1;
-}
-
 
 void QuickSort(int* array, int left, int right)
 {
@@ -83,6 +70,19 @@ void NotRecursiveQuickSort(int* array, int left, int right)
 	}
 }
 
+// simple search by enumeration
+int SimpleSearch(int value, int* array, int length)
+{
+	for (auto i = 0; i < length; i++)
+	{
+		if (*(array + i) == value)
+		{
+			return *(array + i);
+		}
+	}
+	return -1;
+}
+
 int BSearch(int value, int* array, int left, int right)
 {
 	while (left < right)
@@ -119,8 +119,8 @@ int main()
 	int leftBorder2 = -10;
 	int rightBorder2 = 10;
 
-	// значение для поиска а массиве
-	int value = 10001;
+	// Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РїРѕРёСЃРєР° Р° РјР°СЃСЃРёРІРµ
+	int value = -999;
 
 	// arrays initialization 
 	for (auto i = 0; i < length; i++)
@@ -141,42 +141,41 @@ int main()
 	}
 	cout << "=====================================" << endl;
 
-	// поиск в неотсортированном массиве и замер времени для последующего сравнения
-	clock_t start = clock();
+	// РїРѕРёСЃРє РІ РЅРµРѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРј РјР°СЃСЃРёРІРµ Рё Р·Р°РјРµСЂ РІСЂРµРјРµРЅРё РґР»СЏ РїРѕСЃР»РµРґСѓСЋС‰РµРіРѕ СЃСЂР°РІРЅРµРЅРёСЏ
+	auto start = chrono::high_resolution_clock::now();
 	int valueIndexSimple = SimpleSearch(value, myArray, length - 1);
-	clock_t end = clock();
-	long double secondsSimple = (long double)(end - start) / CLOCKS_PER_SEC;
+	auto end = chrono::high_resolution_clock::now();
 
-	// бинарная сортировка 
+	chrono::duration<float> duration = end - start;
+
+	// Р±РёРЅР°СЂРЅР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° 
 	QuickSort(myArray, 0, length - 1);
 	NotRecursiveQuickSort(myArray2, 0, length2 - 1);
 
-	// output sorted array
 	for (auto i = 0; i < length2 / 2; i++)
 	{
-
 		cout << *(myArray2 + i) << endl;
 	}
 	cout << "=====================================" << endl;
 
-	// сравнение поиска в неотсортированном и отсортированном массиве
-	cout << "Simple method time: " << secondsSimple << endl;
+	// СЃСЂР°РІРЅРµРЅРёРµ РїРѕРёСЃРєР° РІ РЅРµРѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРј Рё РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРј РјР°СЃСЃРёРІРµ
+	cout << "Simple method time: " << duration.count() << endl;
 
-	// бинарный поиск и замер времени 
-	start = clock();
+	// Р±РёРЅР°СЂРЅС‹Р№ РїРѕРёСЃРє Рё Р·Р°РјРµСЂ РІСЂРµРјРµРЅРё 
+	start = chrono::high_resolution_clock::now();
 	int valueIndexBinary = BSearch(value, myArray, 0, length - 1);
-	end = clock();
-	long double secondsBynary = (long double)(end - start) / CLOCKS_PER_SEC;
-	cout << "Binary method time: " << secondsBynary << endl;
+	end = chrono::high_resolution_clock::now();
+	duration = end - start;
+	cout << "Binary method time: " << duration.count() << endl;
 
-	// рекурсивный бинарный поиск и замер времени 
-	start = clock();
+	// СЂРµРєСѓСЂСЃРёРІРЅС‹Р№ Р±РёРЅР°СЂРЅС‹Р№ РїРѕРёСЃРє Рё Р·Р°РјРµСЂ РІСЂРµРјРµРЅРё 
+	start = chrono::high_resolution_clock::now();
 	int valueIndexRBinary = RecursiveBSearch(value, myArray, 0, length - 1);
-	end = clock();
-	long double secondsRecBinary = (long double)(end - start) / CLOCKS_PER_SEC;
-	cout << "Recursive binary method time: " << secondsRecBinary << endl;
+	end = chrono::high_resolution_clock::now();
+	duration = end - start;
+	cout << "Recursive binary method time: " << duration.count() << endl;
 
-	// вывод результатов поиска
+	// РІС‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕРёСЃРєР°
 	if (valueIndexSimple == -1)
 		cout << "That item not exist in the array!" << endl;
 	else
