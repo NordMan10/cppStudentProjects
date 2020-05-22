@@ -1,12 +1,11 @@
 #include <iostream>
-//#include "DublicateDelete.h"
 #include "LinkedList.h"
 
 using namespace std;
 
 int main()
 {
-    LinkedList<int> linkedList;
+    LinkedList linkedList;
     linkedList.Add(3);
     linkedList.Add(3);
     linkedList.Add(2);
