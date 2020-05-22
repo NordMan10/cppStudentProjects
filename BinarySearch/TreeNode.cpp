@@ -9,7 +9,6 @@ TreeNode::TreeNode()
 
 TreeNode::TreeNode(int value)
 {
-	assert(value >= 0);
 	value_ = value;
 }
 
@@ -20,7 +19,6 @@ int TreeNode::getValue()
 
 void TreeNode::setValue(int value)
 {
-	assert(value >= 0);
 	value_ = value;
 }
 
@@ -31,7 +29,6 @@ TreeNode* TreeNode::getLeftChild()
 
 void TreeNode::setLeftChild(TreeNode* node)
 {
-	assert(node);
 	leftChild_ = node;
 }
 
@@ -42,6 +39,5 @@ TreeNode* TreeNode::getRightChild()
 
 void TreeNode::setRightChild(TreeNode* node)
 {
-	assert(node);
 	rightChild_ = node;
 }
