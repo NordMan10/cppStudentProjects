@@ -1,8 +1,7 @@
 #include <iostream>
-#include <stack>
-#include <time.h>
 #include <chrono>
 #include "main.h"
+#include "LinkedList.h"
 
 using namespace std;
 
@@ -28,19 +27,20 @@ void QuickSort(int* array, int left, int right)
 
 void NotRecursiveQuickSort(int* array, int left, int right)
 {
-	auto s = stack<int>();
-	s.push(right);
-	s.push(left);
-	while (!s.empty())
+	LinkedList stack = LinkedList();
+	stack.Push(right);
+	stack.Push(left);
+
+	while (stack.Count != 0)
 	{
-		left = s.top();
-		s.pop();
-		right = s.top();
-		s.pop();
+		left = stack.Pop();
+		right = stack.Pop();
 
 		if (left == right) continue;
+
 		auto pivot = *(array + right);
 		auto separatingIndex = left;
+
 		for (auto i = left; i <= right - 1; i++)
 		{
 			if (*(array + i) <= pivot)
@@ -58,13 +58,13 @@ void NotRecursiveQuickSort(int* array, int left, int right)
 		
 		if (separatingIndex > left)
 		{
-			s.push(separatingIndex - 1);
-			s.push(left);
+			stack.Push(separatingIndex - 1);
+			stack.Push(left);
 		}
 		if (separatingIndex < right)
 		{
-			s.push(right);
-			s.push(separatingIndex + 1);
+			stack.Push(right);
+			stack.Push(separatingIndex + 1);
 		}
 		
 	}
@@ -77,7 +77,7 @@ int SimpleSearch(int value, int* array, int length)
 	{
 		if (*(array + i) == value)
 		{
-			return *(array + i);
+			return i;
 		}
 	}
 	return -1;
@@ -111,16 +111,16 @@ int main()
 {
 	const int length = 10000;
 	int myArray[length]{};
-	int leftBorder = -1000;
-	int rightBorder = 1000;
+	const int leftBorder = -1000;
+	const int rightBorder = 1000;
 
 	const int length2 = 100;
 	int myArray2[length2]{};
-	int leftBorder2 = -10;
-	int rightBorder2 = 10;
+	const int leftBorder2 = -10;
+	const int rightBorder2 = 10;
 
 	// значение для поиска а массиве
-	int value = -999;
+	const int value = -999;
 
 	// arrays initialization 
 	for (auto i = 0; i < length; i++)
@@ -143,7 +143,7 @@ int main()
 
 	// поиск в неотсортированном массиве и замер времени для последующего сравнения
 	auto start = chrono::high_resolution_clock::now();
-	int valueIndexSimple = SimpleSearch(value, myArray, length - 1);
+	int valueIndexSimple = SimpleSearch(value, myArray, length);
 	auto end = chrono::high_resolution_clock::now();
 
 	chrono::duration<float> duration = end - start;
@@ -159,6 +159,7 @@ int main()
 	cout << "=====================================" << endl;
 
 	// сравнение поиска в неотсортированном и отсортированном массиве
+	cout << "value: " << value << endl;
 	cout << "Simple method time: " << duration.count() << endl;
 
 	// бинарный поиск и замер времени 
@@ -180,7 +181,7 @@ int main()
 		cout << "That item not exist in the array!" << endl;
 	else
 	{
-		cout << "SimpleSearch: " << *(myArray + valueIndexSimple) << endl;
+		cout << "SimpleSearch: " << "Value index in not sorted array: " << valueIndexSimple << endl;
 		cout << "BSearch: " << *(myArray + valueIndexBinary) << endl;
 		cout << "RecursiveBSearch: " << *(myArray + valueIndexRBinary) << endl;
 	}
