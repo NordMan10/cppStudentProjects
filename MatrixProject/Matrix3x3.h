@@ -13,6 +13,7 @@ public:
 	int sumRow(const int iRow) const;
 	int minColumn(const int iCol) const;
 	int maxColumn(const int iCol) const;
+
 private:
 	int matrix[3][3] =
 	{
@@ -20,6 +21,5 @@ private:
 		{0, 0, 0},
 		{0, 0, 0}
 	};
-
+	const int dimension = 3;
 };
-
