@@ -10,6 +10,8 @@ TreeNode::TreeNode()
 TreeNode::TreeNode(int value)
 {
 	value_ = value;
+	leftChild_ = nullptr;
+	rightChild_ = nullptr;
 }
 
 int TreeNode::getValue()
