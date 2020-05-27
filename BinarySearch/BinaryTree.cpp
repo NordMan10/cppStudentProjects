@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BinaryTree.h"
 
+
 using namespace std;
 
 BinaryTree::BinaryTree()
@@ -90,28 +91,28 @@ TreeNode* BinaryTree::Search(int value)
 	Search(root_, value);
 }
 
-void BinaryTree::addNode(TreeNode* node, int* startArray, int begin, int end)
+void BinaryTree::SetRoot(TreeNode* root)
+{
+	root_ = root;
+}
+
+TreeNode* BinaryTree::CreateMinimalBST(int* startArray, int begin, int end)
 {
 	if (begin > end)
 	{
-		cout << "empty" << endl;
-		//node = nullptr;
-		return;
+		cout << "exit" << endl;
+		return nullptr;
 	}
-	int middleIndex = (end - begin) / 2;
-	node->setValue(*(startArray + begin + middleIndex));
-	cout << "node->getValue():" << node->getValue() << endl;
-	node->setLeftChild(new TreeNode());
-	node->setRightChild(new TreeNode());
-	cout << "left: ";
-	addNode(node->getLeftChild(), startArray, begin, begin + middleIndex - 1);
-	if (begin != begin + middleIndex + 1)
-		cout << "right: ";
-		addNode(node->getRightChild(), startArray, begin + middleIndex + 1, end);
-}
 
-void BinaryTree::CreateMinimalBST(int* startArray, int begin, int end)
-{
-	addNode(root_, startArray, begin, end);
+	int middleIndex = (begin + end) / 2;
+	auto treeNode = new TreeNode(startArray[middleIndex]);
+
+	
+	cout << "Left child from Node with value = : " << treeNode->getValue() << endl;
+	treeNode->setLeftChild(CreateMinimalBST(startArray, begin, middleIndex - 1));
+	cout << "Right child from Node with value = : " << treeNode->getValue() << endl;
+	treeNode->setRightChild(CreateMinimalBST(startArray, middleIndex + 1, end));
+	
+	return treeNode;
 
 }
