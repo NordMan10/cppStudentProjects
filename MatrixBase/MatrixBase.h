@@ -12,10 +12,9 @@ public:
 	void operator*=(int iMult);
 	void operator+=(MatrixBase& iAdd);
 protected:
-	MatrixBase(unsigned int iSize);
-	int* matrix;
+	MatrixBase(unsigned int iSize) : m_size(iSize) {};
 private:
 	const unsigned int m_size;
 };
 
-std::ostream& operator<<(std::ostream& stream, const MatrixBase& iMatrix); // åãî âåäü ìîæíî ñäåëàòü friend-ìåòîäîì êëàññà?
+std::ostream& operator<<(std::ostream& stream, const MatrixBase& iMatrix); // ÐµÐ³Ð¾ Ð²ÐµÐ´ÑŒ Ð¼Ð¾Ð¶Ð½Ð¾ ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ friend-Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð¼ ÐºÐ»Ð°ÑÑÐ°?
