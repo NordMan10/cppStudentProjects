@@ -1,10 +1,5 @@
 #include "MatrixBase.h"
 
-MatrixBase::MatrixBase(unsigned int iSize) : m_size(iSize) 
-{
-	matrix = new int[m_size * m_size];
-};
-
 unsigned int MatrixBase::size() const
 {
 	return m_size;
@@ -12,23 +7,22 @@ unsigned int MatrixBase::size() const
 
 void MatrixBase::operator*=(int iMult)
 {
-	for (auto i = 0; i < m_size * m_size; i++)
-	{
-		matrix[i] = matrix[i] * iMult;
-	}
+	for (auto i = 0; i < m_size; i++)
+		for (auto j = 0; j < m_size; j++)
+			element(i, j) = element(i, j) * iMult;
 }
 
 void MatrixBase::operator+=(MatrixBase& iAdd)
 {
-	for (auto i = 0; i < m_size * m_size; i++)
-	{
-		matrix[i] = matrix[i] + iAdd.matrix[i];
-	}
+	for (auto i = 0; i < m_size; i++)
+		for (auto j = 0; j < m_size; j++)
+			element(i, j) = element(i, j) + iAdd.element(i, j);
 }
 
 std::ostream& operator<<(std::ostream& stream, const MatrixBase& iMatrix)
 {
 	auto count = iMatrix.size();
+
 	for (auto i = 0; i < count; i++)
 	{
 		for (auto j = 0; j < count; j++)
@@ -36,6 +30,8 @@ std::ostream& operator<<(std::ostream& stream, const MatrixBase& iMatrix)
 			stream << iMatrix.element(i, j) << " ";
 		}
 		stream << std::endl;
+		
 	}
+
 	return stream;
 }
