@@ -1,9 +1,8 @@
 #include "Matrix3D.h"
 
-Matrix3D::Matrix3D(unsigned int iSize) : MatrixBase(iSize)
+Matrix3D::Matrix3D() : MatrixBase(size)
 {
-	auto count = size() * size();
-	for (auto i = 0; i < count; i++)
+	for (auto i = 0; i < size * size; i++)
 	{
 		matrix[i] = i + 1;
 	}
@@ -11,10 +10,10 @@ Matrix3D::Matrix3D(unsigned int iSize) : MatrixBase(iSize)
 
 int Matrix3D::element(unsigned int i, unsigned int j) const
 {
-	return matrix[i * size() + j];
+	return matrix[i * size + j];
 }
 
 int& Matrix3D::element(unsigned int i, unsigned int j)
 {
-	return matrix[i * size() + j];
+	return matrix[i * size + j];
 }
