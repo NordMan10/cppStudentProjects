@@ -1,81 +1,69 @@
+#include "LinkedList.h"
 
+LinkedList::LinkedList() {}
 
-// Если делить класс на два файла, то вылезает ошибка LNK2019. Поэтому всё запихнул в заголовочник
+int LinkedList::Count() { return count; }
 
-//#include "LinkedList.h"
-//
-//template<typename T>
-//LinkedList<T>::LinkedList()
-//{
-//	Count = 0;
-//	Head = nullptr;
-//}
-//
-//template<typename T>
-//T LinkedList<T>::operator[] (const int value) 
-//{
-//	assert(value >= 0 && value < this->Count);
-//	Node<T>* result = Head;
-//	for (auto i = 0; i < value; i++)
-//	{
-//		result = result->NextNode;
-//	}
-//	return result;
-//}
-//
-//template<typename T>
-//void LinkedList<T>::Add(T data)
-//{
-//	if (Head == nullptr)
-//	{
-//		Head->Data = data;
-//		Head->NextNode = nullptr;
-//	}
-//	else
-//	{
-//		Node<T>* current = Head;
-//		while (current->NextNode != nullptr)
-//			current = current->NextNode;
-//		current->NextNode = new Node<T>(data);
-//	}
-//	this->Count++;
-//}
-//
-//template<typename T>
-//void LinkedList<T>::RemoveDuplicates()
-//{
-//	Node<T>* temp;
-//	Node<T>* previous;
-//	Node<T>* current;
-//	Node<T>* tempPrev;
-//	for (previous = Head; previous != nullptr; previous = previous->NextNode)
-//	{
-//		tempPrev = previous;
-//		for (current = previous->NextNode; current != nullptr;)
-//		{
-//			if (current->Data == previous->Data)
-//			{
-//				temp = tempPrev->NextNode;
-//				tempPrev->NextNode = current->NextNode;
-//				free(current);
-//				current = temp;
-//				Count--;
-//			}
-//			else
-//			{
-//				tempPrev = current;
-//				current = current->NextNode;
-//			}
-//		}
-//	}
-//}
-//template<typename T>
-//T LinkedList<T>::SearchFromEnd(int k)
-//{
-//	Node<T>* result = Head;
-//	for (auto i = 0; i < this->Count - k; i++)
-//	{
-//		Head = Head->NextNode;
-//	}
-//	return result;
-//}
+int LinkedList::operator[] (const int value) 
+{
+	Node* result = Head;
+	for (auto i = 0; i < value; i++)
+	{
+		result = result->getNextNode();
+	}
+	return result->getData();
+}
+
+void LinkedList::Add(int data)
+{
+	if (Head == nullptr)
+	{
+		this->Head = new Node(data);
+		this->Head->setNextNode(nullptr); // РЅР°РґРѕ Р»Рё?
+	}
+	else
+	{
+		Node* current = Head;
+		while (current->getNextNode() != nullptr)
+			current = current->getNextNode();
+		current->setNextNode(new Node(data));
+	}
+	count++;
+}
+
+void LinkedList::RemoveDuplicates()
+{
+	Node* temp = new Node();
+	Node* base = new Node();
+	Node* current = new Node();
+	Node* previous = new Node();
+	for (base = Head; base != nullptr; base = base->getNextNode())
+	{
+		previous = base;
+		for (current = base->getNextNode(); current != nullptr;)
+		{
+			if (current->getData() == base->getData())
+			{
+				temp = current;
+				current = current->getNextNode();
+				previous->setNextNode(current);
+				delete temp;
+				count--;
+
+			}
+			else
+			{
+				previous = current;
+				current = current->getNextNode();
+			}
+		}
+	}
+}
+
+int LinkedList::SearchFromEnd(int k)
+{
+	Node* result = Head;
+	for (auto i = 0; i < count - k; i++)
+		result = result->getNextNode();
+	return result->getData();
+}
