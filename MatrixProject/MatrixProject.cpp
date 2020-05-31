@@ -20,9 +20,10 @@ void StartFirst()
     }
 
     cout << "Diag sum:" << endl;
-    cout << " Principal: " << matrix.sumPrincipalDiag() << " Secondary: " << matrix.sumSecondaryDiag() << endl;
+    cout << " Main: " << matrix.sumPrincipalDiag() << " Auxilary: " << matrix.sumSecondaryDiag() << endl;
     cout << "Diag product:" << endl;
-    cout << " Principal: " << matrix.productPrincipalDiag() << " Secondary: " << matrix.productSecondaryDiag() << endl;
+    cout << " Main: " << matrix.productPrincipalDiag() << " Auxilary: " << matrix.productSecondaryDiag() << endl;
+
     cout << "String sum:" << endl;
     for (auto i = 0; i < 3; i++)
         cout << i + 1 << ": " << matrix.sumRow(i) << endl;
@@ -34,43 +35,37 @@ void StartFirst()
         cout << j + 1 << ": " << matrix.minColumn(j) << endl;
     cout << endl << endl;
 }
-
 void StartSecond()
 {
-    MatrixXnX matrix = MatrixXnX(2);
+    MatrixXnX matrix = MatrixXnX(4);
     matrix.fillRandomElements(-10, 10);
     cout << "===============Dynamic:=============== " << endl;
-	
-    for (int i = 0; i < matrix.dimension; i++)
+    for (int i = 0; i < matrix.getDimension(); i++)
     {
         for (int j = 0; j < matrix.getDimension(); j++)
             cout << matrix.element(i, j) << " ";
         cout << endl;
     }
-	
+
     cout << "Diag sum:" << endl;
-    cout << " Principal: " << matrix.sumPrincipalDiag() << " Secondary: " << matrix.sumSecondaryDiag() << endl;
+    cout << " Main: " << matrix.sumPrincipalDiag() << " Auxilary: " << matrix.sumSecondaryDiag() << endl;
     cout << "Diag product:" << endl;
-    cout << " Principal: " << matrix.productPrincipalDiag() << " Secondary: " << matrix.productSecondaryDiag() << endl;
+    cout << " Main: " << matrix.productPrincipalDiag() << " Auxilary: " << matrix.productSecondaryDiag() << endl;
+
     cout << "String sum:" << endl;
-	
     for (int i = 0; i < matrix.getDimension(); i++)
         cout << i + 1 << ": " << matrix.sumRow(i) << endl;
-	
     cout << "Column max:" << endl;
-	
     for (int j = 0; j < matrix.getDimension(); j++)
         cout << j + 1 << ": " << matrix.maxColumn(j) << endl;
-	
     cout << "Column min:" << endl;
-	
     for (int j = 0; j < matrix.getDimension(); j++)
         cout << j + 1 << ": " << matrix.minColumn(j) << endl;
 }
 
 int main()
 {
-	StartFirst();
-	StartSecond();
+    StartFirst();
+    StartSecond();
 	return 0;
 }
