@@ -8,20 +8,24 @@ MatrixXnX::MatrixXnX(const int iDim) : dimension(iDim)
 	for (auto i = 0; i < iDim * iDim; i++)
 		matrix[i] = 0;
 }
+
 int MatrixXnX::element(const int i, const int j) const
 {
 	return matrix[i * dimension + j];
 }
+
 void MatrixXnX::fillRandomElements(const int minVal, const int maxVal)
 {
 	srand(time(0));
 	for (auto i = 0; i < dimension * dimension; i++)
 		matrix[i] = minVal + rand() % (maxVal - minVal + 1);
 }
+
 void MatrixXnX::setElement(const int i, const int j, const int value)
 {
 	matrix[i * dimension + j] = value;
 }
+
 int MatrixXnX::sumPrincipalDiag() const
 {
 	int sum = 0;
@@ -29,6 +33,7 @@ int MatrixXnX::sumPrincipalDiag() const
 		sum += element(i, i);
 	return sum;
 }
+
 int MatrixXnX::sumSecondaryDiag() const
 {
 	int sum = 0;
@@ -36,6 +41,7 @@ int MatrixXnX::sumSecondaryDiag() const
 		sum += element(i, dimension - i - 1);
 	return sum;
 }
+
 int MatrixXnX::productPrincipalDiag() const
 {
 	int product = 1;
@@ -43,6 +49,7 @@ int MatrixXnX::productPrincipalDiag() const
 		product *= element(i, i);
 	return product;
 }
+
 int MatrixXnX::productSecondaryDiag() const
 {
 	int product = 1;
