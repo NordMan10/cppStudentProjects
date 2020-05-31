@@ -37,6 +37,7 @@ int Matrix3x3::sumSecondaryDiag() const
 		sum += matrix[i][dimension - i - 1];
 	return sum;
 }
+
 int Matrix3x3::productPrincipalDiag() const
 {
 	int sum = 1;
@@ -46,6 +47,7 @@ int Matrix3x3::productPrincipalDiag() const
 				sum *= matrix[i][j];
 	return sum;
 }
+
 int Matrix3x3::productSecondaryDiag() const
 {
 	int sum = 1;
@@ -53,6 +55,7 @@ int Matrix3x3::productSecondaryDiag() const
 		sum *= matrix[i][dimension - 1 - i];
 	return sum;
 }
+
 int Matrix3x3::sumRow(const int iRow) const
 {
 	int sum = 0;
@@ -60,6 +63,7 @@ int Matrix3x3::sumRow(const int iRow) const
 		sum += matrix[iRow][j];
 	return sum;
 }
+
 int Matrix3x3::minColumn(const int iCol) const
 {
 	int sum = std::numeric_limits<int>::max();
@@ -68,6 +72,7 @@ int Matrix3x3::minColumn(const int iCol) const
 			sum = matrix[i][iCol];
 	return sum;
 }
+
 int Matrix3x3::maxColumn(const int iCol) const
 {
 	int sum = std::numeric_limits<int>::min();
