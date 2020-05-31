@@ -50,7 +50,7 @@ int Matrix3x3::productSecondaryDiag() const
 {
 	int sum = 1;
 	for (auto i = 0; i < dimension; i++)
-		sum *= matrix[i][3 - 1 - i];
+		sum *= matrix[i][dimension - 1 - i];
 	return sum;
 }
 int Matrix3x3::sumRow(const int iRow) const
@@ -62,7 +62,7 @@ int Matrix3x3::sumRow(const int iRow) const
 }
 int Matrix3x3::minColumn(const int iCol) const
 {
-	int sum = INT32_MAX;
+	int sum = std::numeric_limits<int>::max();
 	for (auto i = 0; i < dimension; i++)
 		if (matrix[i][iCol] < sum)
 			sum = matrix[i][iCol];
@@ -70,7 +70,7 @@ int Matrix3x3::minColumn(const int iCol) const
 }
 int Matrix3x3::maxColumn(const int iCol) const
 {
-	int sum = INT32_MIN;
+	int sum = std::numeric_limits<int>::min();
 	for (auto i = 0; i < dimension; i++)
 		if (matrix[i][iCol] > sum)
 			sum = matrix[i][iCol];
