@@ -1,12 +1,15 @@
 #include "MatrixXnX.h"
-#include <iostream>
-#include <time.h>
 
 MatrixXnX::MatrixXnX(const int iDim) : dimension(iDim)
 {
 	matrix = new int [iDim * iDim];
 	for (auto i = 0; i < iDim * iDim; i++)
 		matrix[i] = 0;
+}
+
+MatrixXnX::~MatrixXnX()
+{
+	delete matrix;
 }
 
 int MatrixXnX::element(const int i, const int j) const
