@@ -1,9 +1,13 @@
+#include <iostream>
+#include <time.h>
+
 #pragma once
+
 class MatrixXnX
 {
 public:
-	int dimension;
 	MatrixXnX(const int iDim);
+	~MatrixXnX();
 	int element(const int i, const int j) const;
 	void setElement(const int i, const int j, const int value);
 	void fillRandomElements(const int minVal, const int maxVal);
@@ -15,9 +19,9 @@ public:
 	int minColumn(const int iCol) const;
 	int maxColumn(const int iCol) const;
 	int getDimension() const;
-	
+
 private:
-	int* matrix;
-	int dimension;
+	int* matrix = nullptr;
+	const int dimension;
 };
 
