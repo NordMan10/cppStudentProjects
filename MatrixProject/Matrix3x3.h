@@ -1,3 +1,6 @@
+#include <iostream>
+#include <time.h>
+
 #pragma once
 
 class Matrix3x3
@@ -15,11 +18,11 @@ public:
 	int maxColumn(const int iCol) const;
 
 private:
-	int matrix[3][3] =
+	static constexpr int dimension = 3;
+	int matrix[dimension][dimension] =
 	{
 		{0, 0, 0},
 		{0, 0, 0},
 		{0, 0, 0}
 	};
-	const int dimension = 3;
 };
