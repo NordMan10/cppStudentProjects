@@ -1,8 +1,7 @@
-#include <iostream>
-#include <time.h>
 #include "Matrix3x3.h"
 #include "MatrixProject.h"
 #include "MatrixXnX.h"
+
 using namespace std;	
 
 void StartFirst()
@@ -20,9 +19,9 @@ void StartFirst()
     }
 
     cout << "Diag sum:" << endl;
-    cout << " Main: " << matrix.sumPrincipalDiag() << " Auxilary: " << matrix.sumSecondaryDiag() << endl;
+    cout << " Principal: " << matrix.sumPrincipalDiag() << " Secondary: " << matrix.sumSecondaryDiag() << endl;
     cout << "Diag product:" << endl;
-    cout << " Main: " << matrix.productPrincipalDiag() << " Auxilary: " << matrix.productSecondaryDiag() << endl;
+    cout << " Principal: " << matrix.productPrincipalDiag() << " Secondary: " << matrix.productSecondaryDiag() << endl;
 
     cout << "String sum:" << endl;
     for (auto i = 0; i < 3; i++)
@@ -48,9 +47,9 @@ void StartSecond()
     }
 
     cout << "Diag sum:" << endl;
-    cout << " Main: " << matrix.sumPrincipalDiag() << " Auxilary: " << matrix.sumSecondaryDiag() << endl;
+    cout << " Principal: " << matrix.sumPrincipalDiag() << " Secondary: " << matrix.sumSecondaryDiag() << endl;
     cout << "Diag product:" << endl;
-    cout << " Main: " << matrix.productPrincipalDiag() << " Auxilary: " << matrix.productSecondaryDiag() << endl;
+    cout << " Principal: " << matrix.productPrincipalDiag() << " Secondary: " << matrix.productSecondaryDiag() << endl;
 
     cout << "String sum:" << endl;
     for (int i = 0; i < matrix.getDimension(); i++)
