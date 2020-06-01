@@ -1,5 +1,3 @@
-#include <iostream>
-#include <time.h>
 #include "Matrix3x3.h"
 
 int Matrix3x3::element(const int i, const int j) const
@@ -24,9 +22,7 @@ int Matrix3x3::sumPrincipalDiag() const
 {
 	int sum = 0;
 	for (auto i = 0; i < dimension; i++)
-		for (auto j = 0; j < dimension; j++)
-			if (i == j)	
-				sum += matrix[i][j];
+		sum += matrix[i][i];
 	return sum;
 }
 
@@ -42,9 +38,7 @@ int Matrix3x3::productPrincipalDiag() const
 {
 	int sum = 1;
 	for (auto i = 0; i < dimension; i++)
-		for (auto j = 0; j < dimension; j++)
-			if (i == j)
-				sum *= matrix[i][j];
+		sum *= matrix[i][i];
 	return sum;
 }
 
