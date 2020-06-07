@@ -1,4 +1,6 @@
 #include "MatrixXnX.h"
+#include <iostream>
+#include <time.h>
 
 MatrixXnX::MatrixXnX(const int iDim) : dimension(iDim)
 {
@@ -19,9 +21,9 @@ int MatrixXnX::element(const int i, const int j) const
 
 void MatrixXnX::fillRandomElements(const int minVal, const int maxVal)
 {
-	srand(time(0));
+	srand(time(NULL));
 	for (auto i = 0; i < dimension * dimension; i++)
-		matrix[i] = minVal + rand() % (maxVal - minVal + 1);
+		matrix[i] = minVal + std::rand() % (maxVal - minVal + 1);
 }
 
 void MatrixXnX::setElement(const int i, const int j, const int value)
