@@ -1,6 +1,3 @@
-#include <iostream>
-#include <time.h>
-
 #pragma once
 
 class Matrix3x3
@@ -16,6 +13,7 @@ public:
 	int sumRow(const int iRow) const;
 	int minColumn(const int iCol) const;
 	int maxColumn(const int iCol) const;
+	int getDimension() const;
 
 private:
 	static constexpr int dimension = 3;
