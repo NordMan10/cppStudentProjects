@@ -1,4 +1,6 @@
 #include "Matrix3x3.h"
+#include <iostream>
+#include <time.h>
 
 int Matrix3x3::element(const int i, const int j) const
 {
@@ -12,7 +14,7 @@ void Matrix3x3::setElement(const int i, const int j, const int value)
 
 void Matrix3x3::fillRandomElements(const int minVal, const int maxVal)
 {
-	srand(time(0));
+	srand(time(NULL));
 	for (auto i = 0; i < dimension; i++)
 		for (auto j = 0; j < dimension; j++)
 			matrix[i][j] = minVal + rand() % (maxVal - minVal + 1);
@@ -74,4 +76,9 @@ int Matrix3x3::maxColumn(const int iCol) const
 		if (matrix[i][iCol] > sum)
 			sum = matrix[i][iCol];
 	return sum;
+}
+
+int Matrix3x3::getDimension() const
+{
+	return dimension;
 }
