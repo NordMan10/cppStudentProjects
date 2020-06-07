@@ -1,6 +1,3 @@
-#include <iostream>
-#include <time.h>
-
 #pragma once
 
 class MatrixXnX
