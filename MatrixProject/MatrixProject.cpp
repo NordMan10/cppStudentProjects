@@ -1,6 +1,7 @@
 #include "Matrix3x3.h"
 #include "MatrixProject.h"
 #include "MatrixXnX.h"
+#include <iostream>
 
 using namespace std;	
 
@@ -11,9 +12,9 @@ void StartFirst()
 
     cout << "==============Static===============: " << endl;
 
-    for (auto i = 0; i < 3; i++)
+    for (auto i = 0; i < matrix.getDimension(); i++)
     {
-        for (auto j = 0; j < 3; j++)
+        for (auto j = 0; j < matrix.getDimension(); j++)
             cout << matrix.element(i, j) << " ";
         cout << endl;
     }
@@ -23,15 +24,9 @@ void StartFirst()
     cout << "Diag product:" << endl;
     cout << " Principal: " << matrix.productPrincipalDiag() << " Secondary: " << matrix.productSecondaryDiag() << endl;
 
-    cout << "String sum:" << endl;
-    for (auto i = 0; i < 3; i++)
-        cout << i + 1 << ": " << matrix.sumRow(i) << endl;
-    cout << "Column max:" << endl;
-    for (auto j = 0; j < 3; j++)
-        cout << j + 1 << ": " << matrix.maxColumn(j) << endl;
-    cout << "Column min:" << endl;
-    for (auto j = 0; j < 3; j++)
-        cout << j + 1 << ": " << matrix.minColumn(j) << endl;
+    cout << "String 1 sum:" << matrix.sumRow(0) << endl;
+    cout << "Column 1 max:" << matrix.maxColumn(0) << endl;
+    cout << "Column 1 min:" << matrix.minColumn(0) << endl;
     cout << endl << endl;
 }
 void StartSecond()
@@ -51,15 +46,9 @@ void StartSecond()
     cout << "Diag product:" << endl;
     cout << " Principal: " << matrix.productPrincipalDiag() << " Secondary: " << matrix.productSecondaryDiag() << endl;
 
-    cout << "String sum:" << endl;
-    for (int i = 0; i < matrix.getDimension(); i++)
-        cout << i + 1 << ": " << matrix.sumRow(i) << endl;
-    cout << "Column max:" << endl;
-    for (int j = 0; j < matrix.getDimension(); j++)
-        cout << j + 1 << ": " << matrix.maxColumn(j) << endl;
-    cout << "Column min:" << endl;
-    for (int j = 0; j < matrix.getDimension(); j++)
-        cout << j + 1 << ": " << matrix.minColumn(j) << endl;
+    cout << "String 1 sum:" << matrix.sumRow(0) << endl;
+    cout << "Column 1 max:" << matrix.maxColumn(0) << endl;
+    cout << "Column 1 min:" << matrix.minColumn(0) << endl;
 }
 
 int main()
