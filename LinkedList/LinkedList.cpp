@@ -38,18 +38,16 @@ void LinkedList::Add(int data)
 
 void LinkedList::RemoveDuplicates()
 {
-	Node* temp = new Node();
-	Node* base = new Node();
-	Node* current = new Node();
-	Node* previous = new Node();
-	for (base = head; base != nullptr; base = base->getNextNode())
+	Node* base = head;
+	while (base != nullptr)
 	{
-		previous = base;
-		for (current = base->getNextNode(); current != nullptr;)
+		Node* previous = base;
+		Node* current = base->getNextNode();
+		while (current != nullptr)
 		{
 			if (current->getData() == base->getData())
 			{
-				temp = current;
+				Node* temp = current;
 				current = current->getNextNode();
 				previous->setNextNode(current);
 				delete temp;
@@ -62,6 +60,7 @@ void LinkedList::RemoveDuplicates()
 				current = current->getNextNode();
 			}
 		}
+		base = base->getNextNode();
 	}
 }
 
