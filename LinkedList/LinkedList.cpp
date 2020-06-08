@@ -10,18 +10,16 @@ int LinkedList::Count() const { return count; }
 int LinkedList::operator[] (const int value) const
 {
 	Node* result = head;
-	if (value < count && result != nullptr)
+	int counter = 0;
+	while (counter != value)
 	{
-		for (auto i = 0; i < value; i++)
-		{
+		if (result != nullptr)
 			result = result->getNextNode();
-		}
-		return result->getData();
+		else
+			throw std::out_of_range{ "Index is out of range" };
+		counter++;
 	}
-	else
-	{
-		throw std::out_of_range{ "Index is out of range" };
-	}
+	return result->getData();
 }
 
 void LinkedList::Add(int data)
