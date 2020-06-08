@@ -2,28 +2,36 @@
 
 LinkedList::LinkedList() {}
 
-int LinkedList::Count() { return count; }
-
-int LinkedList::operator[] (const int value) 
+LinkedList::~LinkedList() 
 {
-	Node* result = Head;
-	for (auto i = 0; i < value; i++)
+	delete head;
+}
+
+int LinkedList::Count() const { return count; }
+
+int LinkedList::operator[] (const int value) const
+{
+	Node* result = head;
+	if (value < count)
 	{
-		result = result->getNextNode();
+		for (auto i = 0; i < value; i++)
+		{
+			result = result->getNextNode();
+		}
 	}
 	return result->getData();
 }
 
 void LinkedList::Add(int data)
 {
-	if (Head == nullptr)
+	if (head == nullptr)
 	{
-		this->Head = new Node(data);
-		this->Head->setNextNode(nullptr); // надо ли?
+		head = new Node(data);
+		head->setNextNode(nullptr); // надо ли?
 	}
 	else
 	{
-		Node* current = Head;
+		Node* current = head;
 		while (current->getNextNode() != nullptr)
 			current = current->getNextNode();
 		current->setNextNode(new Node(data));
@@ -37,7 +45,7 @@ void LinkedList::RemoveDuplicates()
 	Node* base = new Node();
 	Node* current = new Node();
 	Node* previous = new Node();
-	for (base = Head; base != nullptr; base = base->getNextNode())
+	for (base = head; base != nullptr; base = base->getNextNode())
 	{
 		previous = base;
 		for (current = base->getNextNode(); current != nullptr;)
@@ -60,9 +68,9 @@ void LinkedList::RemoveDuplicates()
 	}
 }
 
-int LinkedList::SearchFromEnd(int k)
+int LinkedList::SearchFromEnd(int k) const
 {
-	Node* result = Head;
+	Node* result = head;
 	for (auto i = 0; i < count - k; i++)
 		result = result->getNextNode();
 	return result->getData();
