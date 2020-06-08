@@ -6,13 +6,15 @@ class LinkedList
 {
 public:
 	LinkedList();
-	int operator[] (const int value);
-	int Count();
+	~LinkedList();
+	int operator[] (const int value) const;
+	int Count() const;
 	void Add(int data);
 	void RemoveDuplicates();
-	int SearchFromEnd(int k);
+	int SearchFromEnd(int k) const;
 
 private:
-	Node* Head = nullptr;
+	Node* head = nullptr;
 	int count = 0;
 };
+
