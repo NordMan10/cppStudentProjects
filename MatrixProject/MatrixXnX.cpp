@@ -74,18 +74,18 @@ int MatrixXnX::sumRow(const int iRow) const
 int MatrixXnX::minColumn(const int iCol) const
 {
 	int min = std::numeric_limits<int>::max();
-	for (auto i = iCol; i < dimension * dimension; i += dimension)
-		if (matrix[i] < min)
-			min = matrix[i];
+	for (auto i = 0; i < dimension; i++)
+		if (element(i, iCol) < min)
+			min = element(i, iCol);
 	return min;
 }
 
 int MatrixXnX::maxColumn(const int iCol) const
 {
 	int max = std::numeric_limits<int>::min();
-	for (auto i = iCol; i < dimension * dimension; i += dimension)
-		if (matrix[i] > max)
-			max = matrix[i];
+	for (auto i = 0; i < dimension; i++)
+		if (element(i, iCol) > max)
+			max = element(i, iCol);
 	return max;
 }
 
