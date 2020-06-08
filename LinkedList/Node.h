@@ -5,9 +5,9 @@ class Node
 public:
 	Node();
 	Node(int data);
-	Node* getNextNode();
+	Node* getNextNode() const;
 	void setNextNode(Node* node);
-	int getData();
+	int getData() const;
 	void setData(int data);
 
 private:
