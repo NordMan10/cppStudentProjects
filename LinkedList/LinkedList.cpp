@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include <stdexcept>
 
 LinkedList::LinkedList() {}
 
@@ -9,14 +10,18 @@ int LinkedList::Count() const { return count; }
 int LinkedList::operator[] (const int value) const
 {
 	Node* result = head;
-	if (value < count)
+	if (value < count && result != nullptr)
 	{
 		for (auto i = 0; i < value; i++)
 		{
 			result = result->getNextNode();
 		}
+		return result->getData();
 	}
-	return result->getData();
+	else
+	{
+		throw std::out_of_range{ "Index is out of range" };
+	}
 }
 
 void LinkedList::Add(int data)
@@ -24,7 +29,6 @@ void LinkedList::Add(int data)
 	if (head == nullptr)
 	{
 		head = new Node(data);
-		head->setNextNode(nullptr); // надо ли?
 	}
 	else
 	{
