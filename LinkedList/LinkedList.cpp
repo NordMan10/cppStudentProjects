@@ -2,10 +2,7 @@
 
 LinkedList::LinkedList() {}
 
-LinkedList::~LinkedList() 
-{
-	delete head;
-}
+LinkedList::~LinkedList() { delete head; }
 
 int LinkedList::Count() const { return count; }
 
